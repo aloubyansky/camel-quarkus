@@ -95,7 +95,7 @@ jobs:
           cd integration-tests
           mvn help:evaluate -Dexpression=project.modules -N -q -DforceStdout | sed -e 's/<[^>]*>//g' -e 's/^[[:space:]]*//' -e '/^$/d' > ${{ runner.temp }}/itest-modules.txt
           GROUP1_MODULES=$(cat ${{ runner.temp }}/itest-modules.txt | grep -E '^[a-m].*' | tr '\n' ',' | sed 's/,$//')
-          echo "alternate-jvm-matrix={'include': [{'name': 'group-01', 'modules': '${GROUP1_MODULES}'},{'name': 'group-02', 'modules': '${GROUP2_MODULES}'}]}" >> $GITHUB_OUTPUT
+          echo "alternate-jvm-matrix={'include': [{'name': 'group-01', 'modules': '${GROUP1_MODULES}'}]}" >> $GITHUB_OUTPUT
       - name: Setup Examples Matrix
         id: set-examples-matrix
         run: |
